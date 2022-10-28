@@ -348,21 +348,21 @@ public class XcodeTarget: Hashable, Equatable {
             .map { fileInfo -> ProjectSpec.TargetSource in
                 let path = self.getRelativePath(for: fileInfo)
                 let phase = XcodeTarget.isHeaderLike(path: path) ?
-                    TargetSource.BuildPhase.headers : nil
+                    ProjectSpec.TargetSource.BuildPhase.headers : nil
                 return ProjectSpec.TargetSource(path: path, buildPhase: phase,
                         headerVisibility:
-                        TargetSource.HeaderVisibility.`project`)
+                        ProjectSpec.TargetSource.HeaderVisibility.`project`)
             }
         let nonArcFiles = self.nonARCSourceFiles
             .map {
                 fileInfo -> ProjectSpec.TargetSource in
                 let path = self.getRelativePath(for: fileInfo)
                 let phase = XcodeTarget.isHeaderLike(path: path) ?
-                    TargetSource.BuildPhase.headers : nil
+                    ProjectSpec.TargetSource.BuildPhase.headers : nil
                 return ProjectSpec.TargetSource(path: path,
                          compilerFlags: ["-fno-objc-arc"],
                         buildPhase: phase, headerVisibility:
-                        TargetSource.HeaderVisibility.`project`)
+                        ProjectSpec.TargetSource.HeaderVisibility.`project`)
             }
 
 
